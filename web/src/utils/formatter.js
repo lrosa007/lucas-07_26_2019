@@ -1,5 +1,7 @@
 import numeral from 'numeral';
 
 export default bytes => {
-  return numeral(bytes).format('0b');
+  return numeral(bytes)
+    .format('0b')
+    .toLowerCase();
 };

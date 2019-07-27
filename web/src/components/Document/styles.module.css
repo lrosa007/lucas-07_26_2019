@@ -1,14 +1,40 @@
 .document {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  justify-content: space-between;
+  padding: 20px 20px 15px 20px;
+  border: 1px solid black;
 }
 
 .info {
+  display: flex;
+  flex-direction: column;
+}
+
+.info > * {
+  margin-top: 10px;
+}
+
+.info > *:first-child {
+  margin-top: 0px;
 }
 
 .name {
+  font-size: 22px;
+  font-weight: 500;
 }
 
 .size {
+  font-size: 20px;
+  font-weight: 500;
 }
 
 .button {
+  padding: 0px 20px;
+  background-color: #c6d3fa;
+  align-self: flex-end;
+  border: 1px solid black;
+  font-size: 14px;
+  font-weight: 500;
 }

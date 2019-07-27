@@ -1,27 +1,17 @@
 const { IncomingForm } = require("formidable");
+const uuid = require("uuid");
 
-let tempData = [
-  {
-    id: "1",
-    name: "Upload 1"
-  },
-  {
-    id: "2",
-    name: "Upload 2"
-  },
-  {
-    id: "3",
-    name: "Upload 3"
-  }
-];
+// DB
+const db = require("./db");
+
+// Config
+const { maxByteSize } = require("./config");
 
 module.exports.index = (req, res) => {
+  const documents = db.listDocuments(req.query);
+
   res.status(200).json({
-    data: Object.entries(req.query).reduce((documents, [name, value]) => {
-      return documents.filter(
-        document => !document[name] || document[name].includes(value)
-      );
-    }, tempData)
+    data: documents,
   });
 };
 
@@ -29,18 +19,35 @@ module.exports.create = (req, res) => {
   const form = new IncomingForm();
 
   form.on("file", (field, file) => {
-    console.log(file);
-  });
+    const document = {
+      id: uuid.v4(),
+      size: file.size,
+      location: file.path,
+      name: file.name,
+    };
 
-  form.on("end", () => {
-    res.status(200).json();
+    if (document.size > maxByteSize) {
+      res
+        .status(402)
+        .json({ data: `File to large, Max Size is ${maxByteSize} bytes` });
+    } else {
+      db.addDocument(document);
+
+      res.status(200).json();
+    }
   });
 
   form.parse(req);
 };
 
 module.exports.destroy = (req, res) => {
-  tempData = tempData.filter(document => document.id !== req.params.id);
+  const document = db.findDocument(req.params.id);
 
-  res.status(200).json();
+  if (document) {
+    db.deleteDocument(document);
+
+    res.status(200).json({ data: `${document.id} removed` });
+  } else {
+    res.status(404).json({ data: "Document Not Found" });
+  }
 };

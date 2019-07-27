@@ -25,8 +25,8 @@ const App = () => {
   useEffect(() => {
     setLoading(true);
 
-    searchDocuments(query).then(({ data }) => {
-      setData({ count: data.length, totalSize: 0, documents: data });
+    searchDocuments(query).then(data => {
+      setData(data);
       setLoading(false);
     });
   }, [query]);

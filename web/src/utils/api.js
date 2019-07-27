@@ -1,3 +1,5 @@
+import qs from 'query-string';
+
 export const uploadDocument = file => {
   return new Promise((resolve, reject) => {
     const req = new XMLHttpRequest();
@@ -16,5 +18,19 @@ export const uploadDocument = file => {
     req.open('POST', 'http://localhost:4000/documents');
 
     req.send(formData);
+  });
+};
+
+export const searchDocuments = query => {
+  const queryString = qs.stringify(query);
+
+  return fetch(`http://localhost:4000/documents?${queryString}`).then(res =>
+    res.json()
+  );
+};
+
+export const deleteDocument = id => {
+  return fetch(`http://localhost:4000/documents/${id}`, {
+    method: 'delete',
   });
 };

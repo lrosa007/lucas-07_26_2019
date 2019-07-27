@@ -15,7 +15,7 @@ const rateLimiter = require("./rateLimiter");
 const app = express();
 
 // Middlewares
-app.use(morgan("combined"));
+app.use(morgan("dev"));
 app.use(cors(corsOptions));
 app.use(helmet());
 app.use(rateLimiter());

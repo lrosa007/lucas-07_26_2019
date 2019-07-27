@@ -1,0 +1,13 @@
+.documentList {
+  display: flex;
+  align-self: stretch;
+  flex-direction: column;
+}
+
+.documentList > * {
+  margin-top: 15px;
+}
+
+.documentList > *:first-child {
+  margin-top: 0px;
+}

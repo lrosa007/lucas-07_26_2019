@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
+import classnames from 'classnames';
 
 // Utils
 import fileListToArray from 'utils/fileListToArray';
+
+// Styles
+import styles from './styles.module.css';
+
+const uploadClasses = ({ disabled }) =>
+  classnames(styles.upload, { [styles.disabled]: disabled });
 
 class Upload extends Component {
   constructor(props) {
@@ -61,18 +68,18 @@ class Upload extends Component {
 
     return (
       <div
+        className={uploadClasses({ disabled })}
         onDragOver={this.onDragOver}
         onDragLeave={this.onDragLeave}
         onDrop={this.onDrop}
-        style={{ cursor: disabled ? 'default' : 'pointer' }}
       >
-        <label for="files" style={{ color: 'black' }}>
+        <label className={styles.label} for="files">
           UPLOAD
         </label>
         <input
           id="files"
           type="file"
-          style={{ visibility: 'hidden' }}
+          className={styles.input}
           onChange={this.onFilesAdded}
         />
       </div>

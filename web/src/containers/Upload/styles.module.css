@@ -1,0 +1,25 @@
+.upload {
+  background-color: #c6d3fa;
+  cursor: pointer;
+  display: flex;
+  flex: 1;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 0px;
+  border: 1px solid black;
+}
+
+.label {
+  color: black;
+  font-size: 16px;
+}
+
+.disabled {
+  cursor: default;
+}
+
+.input {
+  visibility: hidden;
+  display: none;
+}

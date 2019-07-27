@@ -49,7 +49,9 @@ const App = () => {
         />
         <Search onSubmit={name => setQuery({ ...query, name })} />
       </Header>
+
       <Info count={count} totalSize={totalSize} />
+
       <DocumentList documents={documents} loading={loading} />
     </div>
   );

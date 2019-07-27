@@ -6,3 +6,11 @@
   justify-content: center;
   color: white;
 }
+
+.header > * {
+  margin-top: 15px;
+}
+
+.header > *:first-child {
+  margin-top: 0px;
+}

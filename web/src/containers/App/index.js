@@ -5,6 +5,8 @@ import DocumentList from 'containers/DocumentList';
 import Upload from 'containers/Upload';
 
 // Components
+import Info from 'components/Info';
+import Header from 'components/Header';
 import Search from 'components/Search';
 
 // Utils
@@ -33,7 +35,7 @@ const App = () => {
 
   return (
     <div className={styles.app}>
-      <header className={styles.appHeader}>
+      <Header>
         <Upload
           onFilesAdded={files => {
             try {
@@ -46,9 +48,8 @@ const App = () => {
           }}
         />
         <Search onSubmit={name => setQuery({ ...query, name })} />
-      </header>
-      <h1>{count} Documents</h1>
-      <h2>Total Size: {totalSize}</h2>
+      </Header>
+      <Info count={count} totalSize={totalSize} />
       <DocumentList documents={documents} loading={loading} />
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { Component, createRef } from 'react';
+import React, { Component } from 'react';
 
 // Utils
 import fileListToArray from 'utils/fileListToArray';
@@ -8,16 +8,7 @@ class Upload extends Component {
     super(props);
 
     this.state = { highlighted: false };
-    this.inputRef = createRef();
   }
-
-  openFileDialog = () => {
-    const { disabled } = this.props;
-
-    if (disabled) return;
-
-    this.inputRef.current.click();
-  };
 
   onFilesAdded = event => {
     const { disabled, onFilesAdded } = this.props;
@@ -73,13 +64,15 @@ class Upload extends Component {
         onDragOver={this.onDragOver}
         onDragLeave={this.onDragLeave}
         onDrop={this.onDrop}
-        onClick={this.openFileDialog}
         style={{ cursor: disabled ? 'default' : 'pointer' }}
       >
+        <label for="files" style={{ color: 'black' }}>
+          UPLOAD
+        </label>
         <input
-          ref={this.inputRef}
+          id="files"
           type="file"
-          multiple
+          style={{ visibility: 'hidden' }}
           onChange={this.onFilesAdded}
         />
       </div>

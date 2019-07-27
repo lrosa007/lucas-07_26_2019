@@ -1,8 +1,19 @@
 const express = require("express");
+const cors = require("cors");
+const morgan = require("morgan");
 const { IncomingForm } = require("formidable");
 
 const app = express();
-const PORT = 3000;
+const PORT = 4000;
+
+app.use(morgan("combined"));
+
+app.use(
+  cors({
+    origin: "*",
+    optionsSuccessStatus: 200
+  })
+);
 
 let tempData = [
   {
@@ -39,6 +50,8 @@ app.post("/documents", (req, res) => {
   form.on("end", () => {
     res.status(200).json();
   });
+
+  form.parse(req);
 });
 
 app.delete("/documents/:id", (req, res) => {

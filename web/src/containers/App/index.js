@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 // Containers
+import DocumentList from 'containers/DocumentList';
 import Upload from 'containers/Upload';
 
 // Components
@@ -48,11 +49,11 @@ const App = () => {
       </header>
       <h1>{count} Documents</h1>
       <h2>Total Size: {totalSize}</h2>
-      {documents.map(({ name, id }) => (
-        <div key={`document__${id}`} onClick={() => deleteDocument(id)}>
-          {name}
-        </div>
-      ))}
+      <DocumentList
+        documents={documents}
+        loading={loading}
+        onDelete={id => deleteDocument(id)}
+      />
     </div>
   );
 };

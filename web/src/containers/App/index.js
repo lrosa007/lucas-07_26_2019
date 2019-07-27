@@ -8,7 +8,7 @@ import Upload from 'containers/Upload';
 import Search from 'components/Search';
 
 // Utils
-import { uploadDocument, searchDocuments, deleteDocument } from 'utils/api';
+import { uploadDocument, searchDocuments } from 'utils/api';
 
 // Styles
 import styles from './styles.module.css';
@@ -49,11 +49,7 @@ const App = () => {
       </header>
       <h1>{count} Documents</h1>
       <h2>Total Size: {totalSize}</h2>
-      <DocumentList
-        documents={documents}
-        loading={loading}
-        onDelete={id => deleteDocument(id)}
-      />
+      <DocumentList documents={documents} loading={loading} />
     </div>
   );
 };

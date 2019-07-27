@@ -18,7 +18,7 @@ const app = express();
 app.use(morgan("combined"));
 app.use(cors(corsOptions));
 app.use(helmet());
-app.use(rateLimiter);
+app.use(rateLimiter());
 
 // Routes
 app.get("/documents", controller.index);

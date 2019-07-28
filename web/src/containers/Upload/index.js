@@ -7,15 +7,14 @@ import fileListToArray from 'utils/fileListToArray';
 // Styles
 import styles from './styles.module.css';
 
-const uploadClasses = ({ disabled }) =>
-  classnames(styles.upload, { [styles.disabled]: disabled });
+const uploadClasses = ({ disabled, highlight }) =>
+  classnames(styles.upload, {
+    [styles.disabled]: disabled,
+    [styles.highlighted]: highlight,
+  });
 
 class Upload extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { highlighted: false };
-  }
+  state = { highlight: false };
 
   onFilesAdded = event => {
     const { disabled, onFilesAdded } = this.props;
@@ -64,11 +63,12 @@ class Upload extends Component {
   };
 
   render() {
+    const { highlight } = this.state;
     const { disabled } = this.props;
 
     return (
       <div
-        className={uploadClasses({ disabled })}
+        className={uploadClasses({ disabled, highlight })}
         onDragOver={this.onDragOver}
         onDragLeave={this.onDragLeave}
         onDrop={this.onDrop}

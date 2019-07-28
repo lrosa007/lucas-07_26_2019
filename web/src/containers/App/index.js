@@ -37,6 +37,7 @@ const App = () => {
     <div className={styles.app}>
       <Header>
         <Upload
+          disabled={loading}
           onFilesAdded={files =>
             uploadDocuments(files).then(() => setQuery({ ...query }))
           }

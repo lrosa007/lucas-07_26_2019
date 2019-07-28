@@ -5,7 +5,7 @@
   align-self: stretch;
   align-items: center;
   justify-content: center;
-  padding: 15px;
+  padding: 0px;
   border: 1px solid black;
 }
 
@@ -13,6 +13,7 @@
   color: black;
   font-weight: 500;
   font-size: 20px;
+  padding: 15px;
 }
 
 .disabled {
@@ -24,8 +25,12 @@
   display: none;
 }
 
+.highlighted {
+  background-color: #c6d3ab;
+}
+
 @media only screen and (min-width: 960px) {
-  .upload {
+  .label {
     padding: 15px 42px;
   }
 }

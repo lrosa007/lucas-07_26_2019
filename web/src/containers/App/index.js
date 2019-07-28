@@ -41,7 +41,7 @@ const App = () => {
             try {
               const promises = files.map(file => uploadDocument(file));
 
-              Promise.all(promises);
+              Promise.all(promises).then(() => setQuery({ ...query }));
             } catch (e) {
               console.log(e);
             }
@@ -52,7 +52,11 @@ const App = () => {
 
       <Info count={count} totalSize={totalSize} />
 
-      <DocumentList documents={documents} loading={loading} />
+      <DocumentList
+        documents={documents}
+        loading={loading}
+        refresh={() => setQuery({ ...query })}
+      />
     </div>
   );
 };

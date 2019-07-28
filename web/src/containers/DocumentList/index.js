@@ -9,7 +9,7 @@ import { deleteDocument } from 'utils/api';
 // Styles
 import styles from './styles.module.css';
 
-const DocumentList = ({ documents, loading }) => {
+const DocumentList = ({ documents, loading, refresh }) => {
   if (loading) return null;
 
   return (
@@ -19,7 +19,7 @@ const DocumentList = ({ documents, loading }) => {
           key={`document__${id}`}
           name={name}
           size={size}
-          onDelete={() => deleteDocument(id)}
+          onDelete={() => deleteDocument(id).then(() => refresh())}
         />
       ))}
     </main>

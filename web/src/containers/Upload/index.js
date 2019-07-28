@@ -79,6 +79,7 @@ class Upload extends Component {
         <input
           id="files"
           type="file"
+          multiple
           className={styles.input}
           onChange={this.onFilesAdded}
         />

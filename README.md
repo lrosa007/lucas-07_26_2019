@@ -59,7 +59,7 @@ Ideally in a production scenario we could make use of a real database to store r
 to store the document contents.
 
 The rate limiting at the moment could be better. I'm only making use of the simple in-memory driver. The library I'm using
-for [rate limiting](https://github.com/animir/node-rate-limiter-flexible) supports a [redis](https://github.com/animir/node-rate-limiter-flexible/wiki/Express-Middleware) driver. I imagine in production redis would give us better throughput.
+for [rate limiting](https://github.com/animir/node-rate-limiter-flexible) supports a [redis](https://github.com/animir/node-rate-limiter-flexible/wiki/Express-Middleware) driver. I imagine in production, redis would give us better throughput.
 
 I'm only use the default config from `helmet`. There are many more that cover interesting attacks.
 

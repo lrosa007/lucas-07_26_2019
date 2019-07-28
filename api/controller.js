@@ -35,7 +35,7 @@ module.exports.create = (req, res) => {
         type: file.type,
       })
         .then(document => {
-          res.status(200).json({ data: `${document.id} successfully added` });
+          res.status(200).json({ data: document });
         })
         .catch(e => {
           console.log(e);

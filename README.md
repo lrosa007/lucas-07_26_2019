@@ -66,6 +66,10 @@ I'm only use the default config from `helmet`. There are many more that cover in
 ## Improvements
 
 * **App**
+  * Some kind of typing
+    * propTypes
+    * typescript
+    * flow
   * File Upload Progress Indicator
   * Bring alert for invalid files into the react UI
     * maybe in a modal

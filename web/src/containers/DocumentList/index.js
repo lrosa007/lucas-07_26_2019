@@ -19,7 +19,11 @@ const DocumentList = ({ documents, loading, refresh }) => {
           key={`document__${id}`}
           name={name}
           size={size}
-          onDelete={() => deleteDocument(id).then(() => refresh())}
+          onDelete={() =>
+            deleteDocument(id)
+              .then(() => refresh())
+              .catch(e => console.log(e))
+          }
         />
       ))}
     </ul>

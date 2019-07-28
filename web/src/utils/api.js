@@ -56,7 +56,7 @@ export const uploadDocuments = files => {
     .catch(e => console.log(e));
 };
 
-export const searchDocuments = query => {
+export const searchDocuments = (query = {}) => {
   const queryString = qs.stringify(query);
 
   return fetch(`http://localhost:4000/documents?${queryString}`)

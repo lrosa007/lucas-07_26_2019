@@ -27,10 +27,12 @@ const App = () => {
   useEffect(() => {
     setLoading(true);
 
-    searchDocuments(query).then(data => {
-      setData(data);
-      setLoading(false);
-    });
+    searchDocuments(query)
+      .then(data => {
+        setData(data);
+        setLoading(false);
+      })
+      .catch(e => console.log(e));
   }, [query]);
 
   return (
@@ -39,7 +41,9 @@ const App = () => {
         <Upload
           disabled={loading}
           onFilesAdded={files =>
-            uploadDocuments(files).then(() => setQuery({ ...query }))
+            uploadDocuments(files)
+              .then(() => setQuery({ ...query }))
+              .catch(e => console.log(e))
           }
         />
 

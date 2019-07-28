@@ -10,7 +10,7 @@ const Document = ({ name, size, onDelete }) => {
   const prettyBytes = usePrettyBytes(size);
 
   return (
-    <div className={styles.document}>
+    <li className={styles.document}>
       <div className={styles.info}>
         <span className={styles.name}>{name}</span>
         <span className={styles.size}>{prettyBytes}</span>
@@ -18,7 +18,7 @@ const Document = ({ name, size, onDelete }) => {
       <button className={styles.button} onClick={onDelete}>
         delete
       </button>
-    </div>
+    </li>
   );
 };
 

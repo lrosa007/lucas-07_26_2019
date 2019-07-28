@@ -2,6 +2,8 @@
   display: flex;
   align-self: stretch;
   flex-direction: column;
+  list-style: none;
+  padding: 0;
 }
 
 .documentList > * {
@@ -10,4 +12,17 @@
 
 .documentList > *:first-child {
   margin-top: 0px;
+}
+
+@media only screen and (min-width: 960px) {
+  .documentList {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    width: 100%;
+  }
+
+  .documentList > * {
+    margin-top: 0px;
+  }
 }

@@ -73,7 +73,7 @@ class Upload extends Component {
         onDragLeave={this.onDragLeave}
         onDrop={this.onDrop}
       >
-        <label className={styles.label} for="files">
+        <label className={styles.label} htmlFor="files">
           UPLOAD
         </label>
         <input

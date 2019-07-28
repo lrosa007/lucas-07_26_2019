@@ -3,6 +3,7 @@
   flex-direction: row;
   flex: 1;
   justify-content: space-between;
+  list-style-type: none;
   padding: 20px 20px 15px 20px;
   border: 1px solid black;
 }
@@ -23,6 +24,10 @@
 .name {
   font-size: 22px;
   font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 150px;
 }
 
 .size {
@@ -37,4 +42,19 @@
   border: 1px solid black;
   font-size: 14px;
   font-weight: 500;
+}
+
+@media only screen and (min-width: 960px) {
+  .document {
+    padding: 25px 25px 20px 25px;
+  }
+
+  .info > * {
+    margin-top: 15px;
+  }
+
+  .button {
+    font-size: 16px;
+    padding: 2px 18px;
+  }
 }

@@ -23,3 +23,9 @@
   visibility: hidden;
   display: none;
 }
+
+@media only screen and (min-width: 960px) {
+  .upload {
+    padding: 15px 42px;
+  }
+}

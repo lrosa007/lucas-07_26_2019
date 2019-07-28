@@ -1,12 +1,12 @@
 .app {
   background-color: #ffffff;
   max-width: 960px;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: flex-start;
   padding: 16px;
+  margin: 0 auto;
 }
 
 .app > * {
@@ -15,4 +15,11 @@
 
 .app > *:first-child {
   margin-top: 0px;
+}
+
+@media only screen and (min-width: 960px) {
+  .app {
+    padding: 0;
+    margin-top: 64px;
+  }
 }

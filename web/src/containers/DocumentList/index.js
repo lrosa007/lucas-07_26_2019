@@ -13,7 +13,7 @@ const DocumentList = ({ documents, loading, refresh }) => {
   if (loading) return null;
 
   return (
-    <main className={styles.documentList}>
+    <ul className={styles.documentList}>
       {documents.map(({ id, size, name }) => (
         <Document
           key={`document__${id}`}
@@ -22,7 +22,7 @@ const DocumentList = ({ documents, loading, refresh }) => {
           onDelete={() => deleteDocument(id).then(() => refresh())}
         />
       ))}
-    </main>
+    </ul>
   );
 };
 

@@ -1,6 +1,10 @@
 # dependencies
 /node_modules
 
+*.jpg
+*.jpeg
+*.png
+
 # misc
 .DS_Store
 

@@ -8,32 +8,44 @@ const db = require("./db");
 const { maxByteSize } = require("./config");
 
 module.exports.index = (req, res) => {
-  const documents = db.listDocuments(req.query);
+  return db
+    .listDocuments(req.query)
+    .then(documents =>
+      res.status(200).json({
+        data: documents,
+      })
+    )
+    .catch(e => {
+      console.log(e);
 
-  res.status(200).json({
-    data: documents,
-  });
+      res.status(500).send("Internal Error");
+    });
 };
 
 module.exports.create = (req, res) => {
   const form = new IncomingForm();
 
   form.on("file", (field, file) => {
-    const document = {
-      id: uuid.v4(),
-      size: file.size,
-      location: file.path,
-      name: file.name,
-    };
-
-    if (document.size > maxByteSize) {
+    if (file.size > maxByteSize) {
       res
         .status(402)
         .json({ data: `File to large, Max Size is ${maxByteSize} bytes` });
     } else {
-      db.addDocument(document);
+      db.addDocument({
+        id: uuid.v4(),
+        size: file.size,
+        tempPath: file.path,
+        name: file.name,
+        type: file.type,
+      })
+        .then(document => {
+          res.status(200).json({ data: `${document.id} successfully added` });
+        })
+        .catch(e => {
+          console.log(e);
 
-      res.status(200).json();
+          res.status(500).send("Internal Error");
+        });
     }
   });
 
@@ -41,13 +53,19 @@ module.exports.create = (req, res) => {
 };
 
 module.exports.destroy = (req, res) => {
-  const document = db.findDocument(req.params.id);
+  return db.findDocument(req.params.id).then(document => {
+    if (document) {
+      db.deleteDocument(document)
+        .then(() => {
+          res.status(200).json({ data: `${document.id} removed` });
+        })
+        .catch(e => {
+          console.log(e);
 
-  if (document) {
-    db.deleteDocument(document);
-
-    res.status(200).json({ data: `${document.id} removed` });
-  } else {
-    res.status(404).json({ data: "Document Not Found" });
-  }
+          res.status(500).send("Internal Error");
+        });
+    } else {
+      res.status(404).json({ data: "Document Not Found" });
+    }
+  });
 };

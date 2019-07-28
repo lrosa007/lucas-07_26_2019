@@ -25,6 +25,8 @@ module.exports.index = (req, res) => {
 module.exports.create = (req, res) => {
   const form = new IncomingForm();
 
+  form.maxFileSize = maxByteSize;
+
   form.on("file", (field, file) => {
     if (file.size > maxByteSize) {
       res

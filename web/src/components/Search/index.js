@@ -8,6 +8,7 @@ const Search = ({ onSubmit }) => {
 
   return (
     <input
+      aria-label="search documents"
       className={styles.search}
       value={name}
       placeholder="Search documents..."

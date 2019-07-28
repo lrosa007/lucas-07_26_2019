@@ -27,5 +27,5 @@ app.delete("/documents/:id", controller.destroy);
 
 // Server
 app.listen(PORT, () => {
-  console.log(`Upload API Running on port: ${PORT} 🚀`);
+  console.log(`Upload API Running on: http://localhost:${PORT}/ 🚀`);
 });

@@ -13,7 +13,9 @@ module.exports.listDocuments = async filters => {
 };
 
 module.exports.addDocument = async document => {
-  const location = `./.documents/${document.id}__${document.name}`;
+  const id = uuid.v4();
+
+  const location = `./.documents/${id}__${document.name}`;
 
   fs.copyFile(document.tempPath, location, err => {
     if (err) throw err;
@@ -23,12 +25,12 @@ module.exports.addDocument = async document => {
 
   delete document.tempPath;
 
-  data = [{ ...document, location, id: uuid.v4() }, ...data];
+  data = [{ ...document, location, id }, ...data];
 
   fs.writeFile("./.documents/data.json", JSON.stringify(data), err => {
     if (err) throw err;
 
-    console.log(`DB: Inserted Document ${document.id}`);
+    console.log(`DB: Inserted Document ${data.id}`);
   });
 
   return document;

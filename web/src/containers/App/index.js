@@ -37,16 +37,13 @@ const App = () => {
     <div className={styles.app}>
       <Header>
         <Upload
-          onFilesAdded={files => {
-            try {
-              const promises = files.map(file => uploadDocument(file));
-
-              Promise.all(promises).then(() => setQuery({ ...query }));
-            } catch (e) {
-              console.log(e);
-            }
-          }}
+          onFilesAdded={files =>
+            Promise.all(files.map(file => uploadDocument(file)))
+              .then(() => setQuery({ ...query }))
+              .catch(e => console.log(e))
+          }
         />
+
         <Search onSubmit={name => setQuery({ ...query, name })} />
       </Header>
 

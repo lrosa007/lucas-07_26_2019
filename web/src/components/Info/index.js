@@ -12,7 +12,7 @@ const Info = ({ count, totalSize }) => {
   return (
     <div className={styles.info}>
       <span className={styles.count}>{count} documents</span>
-      <span className={styles.totalSize}>Total Size: {prettyBytes}</span>
+      <span className={styles.totalSize}>Total size: {prettyBytes}</span>
     </div>
   );
 };

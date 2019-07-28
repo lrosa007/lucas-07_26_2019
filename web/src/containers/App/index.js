@@ -10,7 +10,7 @@ import Header from 'components/Header';
 import Search from 'components/Search';
 
 // Utils
-import { uploadDocument, searchDocuments } from 'utils/api';
+import { searchDocuments, uploadDocuments } from 'utils/api';
 
 // Styles
 import styles from './styles.module.css';
@@ -38,9 +38,7 @@ const App = () => {
       <Header>
         <Upload
           onFilesAdded={files =>
-            Promise.all(files.map(file => uploadDocument(file)))
-              .then(() => setQuery({ ...query }))
-              .catch(e => console.log(e))
+            uploadDocuments(files).then(() => setQuery({ ...query }))
           }
         />
 

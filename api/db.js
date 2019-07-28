@@ -1,4 +1,5 @@
 const fs = require("fs");
+const uuid = require("uuid");
 
 // Data
 let data = require("./.documents/data.json");
@@ -22,7 +23,7 @@ module.exports.addDocument = async document => {
 
   delete document.tempPath;
 
-  data = [{ ...document, location }, ...data];
+  data = [{ ...document, location, id: uuid.v4() }, ...data];
 
   fs.writeFile("./.documents/data.json", JSON.stringify(data), err => {
     if (err) throw err;

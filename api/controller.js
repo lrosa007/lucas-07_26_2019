@@ -1,11 +1,10 @@
 const { IncomingForm } = require("formidable");
-const uuid = require("uuid");
 
 // DB
 const db = require("./db");
 
 // Config
-const { maxByteSize } = require("./config");
+const { allowedFileTypes, maxByteSize } = require("./config");
 
 module.exports.index = (req, res) => {
   return db
@@ -27,14 +26,9 @@ module.exports.create = (req, res) => {
 
   form.maxFileSize = maxByteSize;
 
-  form.on("file", (field, file) => {
-    if (file.size > maxByteSize) {
-      res
-        .status(402)
-        .json({ data: `File to large, Max Size is ${maxByteSize} bytes` });
-    } else {
+  form.on("file", (_field, file) => {
+    if (file.size <= maxByteSize && allowedFileTypes.includes(file.type)) {
       db.addDocument({
-        id: uuid.v4(),
         size: file.size,
         tempPath: file.path,
         name: file.name,
@@ -48,6 +42,10 @@ module.exports.create = (req, res) => {
 
           res.status(500).send("Internal Error");
         });
+    } else {
+      res
+        .status(402)
+        .json({ data: `File to large, Max Size is ${maxByteSize} bytes` });
     }
   });
 
